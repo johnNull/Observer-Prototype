@@ -1,39 +1,54 @@
 package studentCoursesBackup;
 public class Node implements ObserverI, SubjectI, Cloneable{
-	private Node b1, b2, left, right;
-	private int bnum;
-	private char[] courses = new char[11];
+	Node b1, b2, left, right;
+	int bnum;
+	String courses;
 	public Node(){
 		
 	}
-	public Node(int b, char course){
+	public Node(int b, String course){
 		bnum = b;
-		courses[0] = course;
+		courses = course;
 		left = null;
 		right = null;
+		b1 = (Node)this.clone();
+		b2 = (Node)this.clone();
 	}
 
 	public Object clone(){
 		Node n = new Node();
 		n.bnum = bnum;
-		for(int i = 0; i < 11; i++)
-			n.courses[i] = courses[i];
+		n.courses = courses;
 		return n;
 	}
 
 	public void update(Node n){
-		bnum = n.bnum;
-		for(int i = 0; i < 11; i++)
-			courses[i] = n.courses[i];
+		n.courses = courses;
 	}
 
 	public void notifyObservers(){
 		b1.update(this);
 		b2.update(this);
 	}
-
-	public void registerObservers(Node n1, Node n2){
-		b1 = n1;
-		b2 = n2;
+	
+	public Node getB1(){
+		return b1;
 	}
+
+	public Node getB2(){
+		return b2;
+	}
+
+	@Override
+	public String toString(){
+		return bnum + ":" + courses;
+	}
+
+	/*public int getBnum(){
+		return bnum;
+	}
+	
+	public char[] getCourses(){
+		return courses;
+	}*/
 }
