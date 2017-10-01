@@ -16,7 +16,8 @@ public class BST{
 			return null;
 	}
 
-	public void insert(Node n){
+	public void insert(String s){
+		Node n = parser(s);
 		root = insert(root, n);
 	}
 
@@ -32,7 +33,8 @@ public class BST{
 		return root;
 	}
 
-	public void delete(Node n){
+	public void delete(String s){
+		Node n = parser(s);
 		Node temp = search(root, n.bnum);
 		System.out.println(temp);
 		temp.courses = temp.courses.replace(n.courses, "");
@@ -62,7 +64,7 @@ public class BST{
 			root.right = delete(root.right, n);
 		}
 		return root;
-	}*/
+	}
 
 	Node minimum(Node root){
 		int min = root.right.bnum;
@@ -71,6 +73,12 @@ public class BST{
 			root = root.left;
 		}
 		return root;
+	}*/
+
+	public Node parser(String n){
+		int bnum = Integer.parseInt(n.substring(0, 4));
+		String courses = n.substring(5);
+		return new Node(bnum, courses);
 	}
 	
 	public void inorder(){
