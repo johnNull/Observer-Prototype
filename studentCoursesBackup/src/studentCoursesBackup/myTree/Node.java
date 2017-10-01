@@ -23,12 +23,18 @@ public class Node implements ObserverI, SubjectI, Cloneable{
 	}
 
 	public void update(Node n){
-		n.courses = courses;
+		bnum = n.bnum;
+		courses = n.courses;
 	}
 
 	public void notifyObservers(){
 		b1.update(this);
 		b2.update(this);
+	}
+
+	public void clearObservers(){
+		b1 = null;
+		b2 = null;
 	}
 	
 	public Node getB1(){

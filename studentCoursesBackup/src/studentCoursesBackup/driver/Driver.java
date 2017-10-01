@@ -15,5 +15,9 @@ public class Driver{
 		bst.insert(n4);
 		bst.insert(n5);
 		bst.inorder();
+		bst.delete(n1);
+		//System.out.println(bst.search(n1, 0001));
+		System.out.println();
+		bst.inorder();
 	}
 }

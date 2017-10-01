@@ -5,7 +5,7 @@ public class BST{
 		root = null;
 	}
 	
-	/*public Node search(int bnumber){
+	public Node search(Node root, int bnumber){
 		if(root == null || root.bnum == bnumber)
 			return root;
 		if(root.bnum > bnumber)
@@ -14,7 +14,7 @@ public class BST{
 			return search(root.right, bnumber);
 		else
 			return null;
-	}*/
+	}
 
 	public void insert(Node n){
 		root = insert(root, n);
@@ -29,6 +29,47 @@ public class BST{
 			root.right = insert(root.right, n);
 		else if(!root.courses.contains(n.courses) && root.bnum == n.bnum)
 			root.courses+=n.courses;
+		return root;
+	}
+
+	public void delete(Node n){
+		root = delete(root, n);
+	}
+
+	void deleteCourse(){
+
+	}
+
+	Node delete(Node root, Node n){
+		if(root == null)
+			return root;
+		if(n.bnum < root.bnum)
+			root.left = delete(root.left, n);
+		else if(n.bnum > root.bnum)
+			root.right = delete(root.right, n);
+		else{
+			if(root.left == null){
+				root.clearObservers();
+				return root.right;
+			}
+			if(root.right == null){
+				root.clearObservers();
+				return root.left;
+			}
+			Node temp = minimum(root.right);
+			root.bnum = temp.bnum;
+			root.courses = temp.courses;
+			root.right = delete(root.right, n);
+		}
+		return root;
+	}
+
+	Node minimum(Node root){
+		int min = root.right.bnum;
+		while(root.left != null){
+			min = root.left.bnum;
+			root = root.left;
+		}
 		return root;
 	}
 	
