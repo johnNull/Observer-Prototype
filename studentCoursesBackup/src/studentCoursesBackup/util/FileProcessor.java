@@ -1,4 +1,4 @@
-package myArrayList;
+package studentCoursesBackup;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -38,10 +38,10 @@ public class FileProcessor{
 		if(file.exists()){
 			try{
 				line = reader.readLine();
-				if(line != null && line.matches("[0-9]+"))
+				if(line != null)
 					return line;
-				else if(line != null){
-					return "-5";
+				else{
+					return "-1";
 				}
 			}
 			catch(IOException e){

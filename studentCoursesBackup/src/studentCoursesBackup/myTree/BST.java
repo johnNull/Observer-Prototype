@@ -16,8 +16,8 @@ public class BST{
 			return null;
 	}
 
-	public void insert(String s){
-		Node n = parser(s);
+	public void insert(Node n){
+		//Node n = parser(s);
 		root = insert(root, n);
 	}
 
@@ -33,8 +33,8 @@ public class BST{
 		return root;
 	}
 
-	public void delete(String s){
-		Node n = parser(s);
+	public void delete(Node n){
+		//Node n = parser(s);
 		Node temp = search(root, n.bnum);
 		System.out.println(temp);
 		temp.courses = temp.courses.replace(n.courses, "");

@@ -1,4 +1,4 @@
-package myArrayList;
+package studentCoursesBackup;
 interface StdoutDisplayInterface{
 	/**
 	 * Write a string to stdout
