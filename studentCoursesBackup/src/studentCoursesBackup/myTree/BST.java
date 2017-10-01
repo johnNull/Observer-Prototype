@@ -33,14 +33,14 @@ public class BST{
 	}
 
 	public void delete(Node n){
-		root = delete(root, n);
+		Node temp = search(root, n.bnum);
+		System.out.println(temp);
+		temp.courses = temp.courses.replace(n.courses, "");
+		temp.notifyObservers();
 	}
 
-	void deleteCourse(){
 
-	}
-
-	Node delete(Node root, Node n){
+	/*Node delete(Node root, Node n){
 		if(root == null)
 			return root;
 		if(n.bnum < root.bnum)
@@ -62,7 +62,7 @@ public class BST{
 			root.right = delete(root.right, n);
 		}
 		return root;
-	}
+	}*/
 
 	Node minimum(Node root){
 		int min = root.right.bnum;
