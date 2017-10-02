@@ -1,4 +1,5 @@
 package studentCoursesBackup;
+import java.lang.StringBuilder;
 public class BST{
 	private Node root;
 	public BST(){
@@ -36,44 +37,13 @@ public class BST{
 	public void delete(Node n){
 		//Node n = parser(s);
 		Node temp = search(root, n.bnum);
-		System.out.println(temp);
-		temp.courses = temp.courses.replace(n.courses, "");
-		temp.notifyObservers();
+		if(temp != null){
+			//System.out.println(temp);
+			temp.courses = temp.courses.replace(n.courses, "");
+			temp.notifyObservers();
+		}
 	}
 
-
-	/*Node delete(Node root, Node n){
-		if(root == null)
-			return root;
-		if(n.bnum < root.bnum)
-			root.left = delete(root.left, n);
-		else if(n.bnum > root.bnum)
-			root.right = delete(root.right, n);
-		else{
-			if(root.left == null){
-				root.clearObservers();
-				return root.right;
-			}
-			if(root.right == null){
-				root.clearObservers();
-				return root.left;
-			}
-			Node temp = minimum(root.right);
-			root.bnum = temp.bnum;
-			root.courses = temp.courses;
-			root.right = delete(root.right, n);
-		}
-		return root;
-	}
-
-	Node minimum(Node root){
-		int min = root.right.bnum;
-		while(root.left != null){
-			min = root.left.bnum;
-			root = root.left;
-		}
-		return root;
-	}*/
 
 	public Node parser(String n){
 		int bnum = Integer.parseInt(n.substring(0, 4));
@@ -81,15 +51,17 @@ public class BST{
 		return new Node(bnum, courses);
 	}
 	
-	public void inorder(){
-		inorderRec(root);
+	public String inorder(){
+		StringBuilder s = new StringBuilder();
+		inorderRec(root, s);
+		return s.toString();
 	}
 
-	public void inorderRec(Node n){
+	public void inorderRec(Node n, StringBuilder s){
 		if(n != null){
-			inorderRec(n.left);
-			System.out.println(n.toString());
-			inorderRec(n.right);
+			inorderRec(n.left, s);
+			s.append(n.toString() + "\n");
+			inorderRec(n.right, s);
 		}
 	}
 }
